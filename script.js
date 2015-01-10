@@ -56,9 +56,9 @@ function diff(orig, now){
 
 $(function(){
 
-	var doc = new transform.Document("");
+	var doc = new transform.Document({ text: '' });
 
-	doc.link(socket);
+	doc.client(socket);
 
 
 	var textarea = $('#text');
@@ -71,7 +71,11 @@ $(function(){
 
 		console.log(doc.value())
 
-		var ops = diff(doc.value(), textarea.val());
+		var ops = diff(doc.value().text, textarea.val());
+
+		for(var i = 0; i < ops.length; i++){
+			ops[i].p = ['text', ops[i].p];
+		}
 
 		console.log(JSON.stringify(ops))
 
@@ -87,7 +91,7 @@ $(function(){
 
 		prop = true;
 
-		textarea.val(doc.value());
+		textarea.val(doc.value().text);
 
 		prop = false;
 

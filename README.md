@@ -1,4 +1,4 @@
 Transform.js
 =============
 
-This is a library for maintaining concurrent, operational transform controlled data objects.
+This is a work-in-progress library for maintaining synchronized concurrent objects through the use of operational transforms.

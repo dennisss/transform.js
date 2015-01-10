@@ -10,15 +10,21 @@
 	},
 	"keywords": [
 		"ot",
-		"operational",
-		"transform"
+		"operation",
+		"transform",
+		"collaborate",
+		"concurrent"
 	],
 	"dependencies": {
 		"express": "latest",
-		"socket.io": "latest",
+		"socket.io": "latest"
+
+	},
+	"devDependencies": {
 		"gulp": "latest",
 		"gulp-browserify": "latest",
-		"gulp-concat": "latest"
+		"gulp-concat": "latest",
+		"mocha": "latest"
 	},
 	"private": true,
 	"license": "MIT"
