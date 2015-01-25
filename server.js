@@ -9,7 +9,7 @@ var express = require('express'),
 app.use(express.static(__dirname + '/public'));
 
 
-var doc = new transform.Document('');
+var doc = new transform.Document({ text: '', other: '' });
 
 io.on('connection', function(socket){
 	console.log('a user connected');
@@ -26,6 +26,11 @@ io.on('connection', function(socket){
 	})
 
 	socket.on('update', function(data){
+		// TODO: Try, catch this and make sure that the change is transactional
+
+		console.log("UP")
+
+
 		var curv = doc.v;
 		var transformed = doc.apply(data.ops, data.v);
 
