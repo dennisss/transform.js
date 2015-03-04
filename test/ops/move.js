@@ -7,7 +7,7 @@ describe('Move', function(){
 		doc = new transform.Document({a: [1,4,5,6], b: [1,2,3,4,5]}, 0);
 	});
 
-	it('should be able to make around items between arrays', function(){
+	it('should be able to move around items between arrays', function(){
 		doc.apply({m: 2, f: ['b', 1], t: ['a', 1] });
 
 		assert.deepEqual(

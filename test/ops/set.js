@@ -30,6 +30,8 @@ describe('Set', function(){
 
 		doc.apply({s: 5, p: ['c', 1, 'd']}, 0);
 
+		assert.deepEqual(doc.val(), {a: 1, b: 'hello', c: [{}]})
+
 	});
 
 

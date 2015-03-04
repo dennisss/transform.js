@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
 	browserify = require('gulp-browserify'),
-	concat = require('gulp-concat');
+	concat = require('gulp-concat'),
+	jsdoc = require('gulp-jsdoc');
 
 
 
@@ -11,6 +12,11 @@ gulp.task('watch', function(){
 		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 	});
 })
+
+gulp.task('doc', function(){
+	return gulp.src(["./lib/**/*.js", "README.md"])
+	.pipe(jsdoc('./doc/out'))
+});
 
 gulp.task('build', function() {
 	gulp.src('./script.js', { read: false })

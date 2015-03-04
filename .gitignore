@@ -1,5 +1,6 @@
 *~
 
+doc/out
 node_modules
 public/build
 papers

@@ -24,6 +24,7 @@
 		"gulp": "latest",
 		"gulp-browserify": "latest",
 		"gulp-concat": "latest",
+		"gulp-jsdoc": "latest",
 		"mocha": "latest"
 	},
 	"private": true,
