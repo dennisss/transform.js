@@ -48,6 +48,27 @@ describe('Delete', function(){
 
 	});
 
+	it('deleting prevents a sub insert', function(){
+		doc.apply({d: 4, p: ['b',1]}, 0);
+		doc.commit();
+		doc.apply({i: 'XYZ', p: ['b',2]}, 0);
+
+		assert.deepEqual(doc.val(), {a: 1, b: 'h', c: [{}, {d:12}]})
+
+	})
+
+
+	it('shifts changes to nearby sub objects', function(){
+		doc.apply({d: 1, p: ['c',0]}, 0);
+		doc.commit();
+		doc.apply({s: 'test', p: ['c',1,'d']}, 0);
+
+		assert.deepEqual(doc.val(), {a: 1, b: 'hello', c: [{d:'test'}]});
+
+	})
+
+
+	// say an array item is a string or an object, deleting that item should null any operations acting on the object
 
 	// overlapping commands on same range
 
