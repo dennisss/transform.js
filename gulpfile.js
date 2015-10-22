@@ -1,12 +1,14 @@
 var gulp = require('gulp'),
-	browserify = require('gulp-browserify'),
+	browserify = require('browserify'),
+	es6ify = require('es6ify'),
+	fs = require('fs'),
 	concat = require('gulp-concat'),
 	jsdoc = require('gulp-jsdoc');
 
 
 
 gulp.task('watch', function(){
-	var watcher = gulp.watch(['**/*.js'], ['build', 'server']);
+	var watcher = gulp.watch(['./lib/**/*.js', './src/**/*.js'], ['build', 'server']);
 
 	watcher.on('change', function(event) {
 		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
@@ -19,12 +21,14 @@ gulp.task('doc', function(){
 });
 
 gulp.task('build', function() {
-	gulp.src('./script.js', { read: false })
-	.pipe(browserify({
-		debug: true
-	}))
-	.pipe(concat('app.js'))
-	.pipe(gulp.dest('./public/build'))
+
+	return browserify({ debug: true })
+	.add(es6ify.runtime)
+	.transform(es6ify)
+	.require(require.resolve('./script.js'), { entry: true })
+	.bundle()
+	.pipe(fs.createWriteStream('./public/build/app.js'));
+
 });
 
 var server = null;
@@ -32,7 +36,7 @@ var server = null;
 function runServer(env){
 	function start(){
 		console.log('Starting server')
-		server = require('child_process').spawn('node', ['server.js'], {
+		server = require('child_process').spawn('node', ['./src/server.js'], {
 			stdio: ['ignore', 1, 2]
 		})
 

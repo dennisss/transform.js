@@ -17,14 +17,16 @@
 	],
 	"dependencies": {
 		"express": "latest",
-		"socket.io": "latest"
-
+		"socket.io": "latest",
+		"mongodb": "2.0.3",
+		"underscore": "latest"
 	},
 	"devDependencies": {
 		"gulp": "latest",
-		"gulp-browserify": "latest",
 		"gulp-concat": "latest",
 		"gulp-jsdoc": "latest",
+		"browserify": "latest",
+		"es6ify": "latest",
 		"mocha": "latest"
 	},
 	"private": true,

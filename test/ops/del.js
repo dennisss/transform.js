@@ -9,11 +9,12 @@ describe('Delete', function(){
 	});
 
 
-	it('should delete from both arrays from strings', function(){
+	it('should delete from both arrays and strings', function(){
 
 		doc.apply({d: 2, p: ['b',1] }, 0);
-		doc.apply({d: 2, p: ['c',0]});
+		assert.deepEqual(doc.val(), {a: 1, b: 'hlo', c: [{}, {d:12}]});
 
+		doc.apply({d: 2, p: ['c',0]});
 		assert.deepEqual(doc.val(), {a: 1, b: 'hlo', c: []});
 
 	});
